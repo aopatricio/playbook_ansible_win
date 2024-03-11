@@ -1,5 +1,5 @@
 ---
-- hosts: win
+- hosts: all
   tasks:
     - name: Copy File
       win_copy:
