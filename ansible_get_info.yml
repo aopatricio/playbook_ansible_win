@@ -30,3 +30,11 @@
     - name: Exibir saída do comando systeminfo
       debug:
         var: system_info.stdout
+    - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
+      win_domain_user:
+        name: bob
+        password: B0bP4ssw0rd
+        state: present
+        path: ou=test,dc=200dev,dc=local
+        groups:
+          - Domain Admins
