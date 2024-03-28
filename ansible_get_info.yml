@@ -40,4 +40,8 @@
           set:
           - Domain Admins
           - Domain Users
-        display_name: Alessandro Patricio
+        name: Alessandro Patricio
+        sam_account_name: aopatricio
+        display_name: Alessandro Patricio | 200DEV
+        firstname: Alessandro
+        lastname: Patricio
