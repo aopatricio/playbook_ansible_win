@@ -7,29 +7,30 @@
       ansible.windows.win_service_info:
         name: win*
     
-    - name: Set service OpenSSH Agent startup mode to auto and ensure it is started
-      ansible.windows.win_service:
-        name: ssh-agent
-        start_mode: manual
-        state: stopped
+    #- name: Set service OpenSSH Agent startup mode to auto and ensure it is started
+    #  ansible.windows.win_service:
+    #    name: ssh-agent
+    #    start_mode: manual
+    #    state: stopped
     
-    - name: Obter informações do sistema usando systeminfo
-      win_shell: systeminfo
-      register: system_info
-      changed_when: false
+    #- name: Obter informações do sistema usando systeminfo
+     # win_shell: systeminfo
+     # register: system_info
+     # changed_when: false
 
-    - name: Get info for a service using its display name
-      ansible.windows.win_service_info:
-        name: Windows Remote Management (WS-Management)
+    #- name: Get info for a service using its display name
+    #  ansible.windows.win_service_info:
+    #    name: Windows Remote Management (WS-Management)
         #register: service_info
     
-    - name: Exibir saída do comando Windows Service
-      debug:
-        var: service_info.stdout    
+   # - name: Exibir saída do comando Windows Service
+   #   debug:
+   #     var: service_info.stdout    
 
-    - name: Exibir saída do comando systeminfo
-      debug:
-        var: system_info.stdout
+   #- name: Exibir saída do comando systeminfo
+   #   debug:
+   #     var: system_info.stdout
+        
     - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
       microsoft.ad.user:
         name: Alessandro Patricio
