@@ -11,7 +11,7 @@
       ansible.windows.win_service:
         name: ssh-agent
         start_mode: manual
-        state: stoped
+        state: stopped
     
     - name: Obter informações do sistema usando systeminfo
       win_shell: systeminfo
