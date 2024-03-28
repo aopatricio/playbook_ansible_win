@@ -5,7 +5,7 @@
   tasks:
     - name: Find all services that start with 'win'
       ansible.windows.win_service_info:
-      name: win*
+        name: win*
     
     #- name: Obter informações do sistema usando systeminfo
     #  win_shell: systeminfo
