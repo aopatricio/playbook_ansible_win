@@ -12,18 +12,18 @@
       register: system_info
       changed_when: false
 
-    #- name: Exibir saída do comando systeminfo
-    #  debug:
-    #    var: system_info.stdout
+    - name: Exibir saída do comando systeminfo
+      debug:
+        var: system_info.stdout
 
-    #- name: Criar inventário do Windows
-    #  set_fact:
-    #    windows_inventory:
-    #      hostname: "{{ ansible_hostname }}"
-    #      os_version: "{{ (system_info.stdout | regex_search('OS Version[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
-    #      memory: "{{ (system_info.stdout | regex_search('Total Physical Memory[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
-    #      processor: "{{ (system_info.stdout | regex_search('Processor\\(s\\)[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
+    - name: Criar inventário do Windows
+      set_fact:
+        windows_inventory:
+          hostname: "{{ ansible_hostname }}"
+          os_version: "{{ (system_info.stdout | regex_search('OS Version[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
+          memory: "{{ (system_info.stdout | regex_search('Total Physical Memory[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
+          processor: "{{ (system_info.stdout | regex_search('Processor\\(s\\)[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
 
-    #- name: Exibir inventário do Windows
-    #  debug:
-    #    var: windows_inventory
+    - name: Exibir inventário do Windows
+      debug:
+        var: windows_inventory
