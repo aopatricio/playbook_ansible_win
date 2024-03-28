@@ -37,4 +37,6 @@
         state: present
         path: ou=test,dc=200dev,dc=local
         groups:
+          set:
           - Domain Admins
+          - Domain Users
