@@ -12,39 +12,10 @@
       register: system_info
       changed_when: false
 
-    - name: Exibir saída do comando systeminfo
-      debug:
-        var: system_info.stdout
-
-    #- name: Criar inventário do Windows
-    #  set_fact:
-    #   windows_inventory:
-    #      #hostname: "{{ (system_info.stdout | regex_search('Host Name[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}" #"{{ ansible_hostname }}"
-    #      os_version: "{{ (system_info.stdout | regex_search('OS Version[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
-    #      memory: "{{ (system_info.stdout | regex_search('Total Physical Memory[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
-    #      processor: "{{ (system_info.stdout | regex_search('Processor\\(s\\)[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
-
-    - name: Exibir inventário do Windows
-      debug:
-        var: windows_inventory
-
-    - name: Playbook para criar inventário do Windows
-      hosts: 172.20.33.26
-      gather_facts: no
-  
-    - name: Get info for all installed services
-      ansible.windows.win_service_info:
-      register: service_info
-      
-    - name: Get info for a single service
-      ansible.windows.win_service_info:
-        name: WinRM
-      register: service_info
-
     - name: Get info for a service using its display name
       ansible.windows.win_service_info:
         name: Windows Remote Management (WS-Management)
-
-    - name: Find all services that start with 'win'
-      ansible.windows.win_service_info:
-        name: win*
+    
+    - name: Exibir saída do comando systeminfo
+      debug:
+        var: system_info.stdout
