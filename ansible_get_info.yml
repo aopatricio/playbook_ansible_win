@@ -19,7 +19,7 @@
     - name: Criar inventário do Windows
       set_fact:
         windows_inventory:
-          hostname: "{{ ansible_hostname }}"
+          hostname: "{{ (system_info.stdout | regex_search('Host Name[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}" #"{{ ansible_hostname }}"
           os_version: "{{ (system_info.stdout | regex_search('OS Version[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
           memory: "{{ (system_info.stdout | regex_search('Total Physical Memory[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
           processor: "{{ (system_info.stdout | regex_search('Processor\\(s\\)[^:]*: (.*)', '\\1') | first).split(':')[1] | trim }}"
