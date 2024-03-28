@@ -15,7 +15,7 @@
     - name: Get info for a service using its display name
       ansible.windows.win_service_info:
         name: Windows Remote Management (WS-Management)
-        register: service_info
+        #register: service_info
     
     - name: Exibir saída do comando Windows Service
       debug:
