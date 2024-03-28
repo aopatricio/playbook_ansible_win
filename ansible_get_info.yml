@@ -48,5 +48,5 @@
         #domain_username: aopatricio@200dev.local
         domain_username: 200DEV\aopatricio
         domain_password: B0bP4ssw0rd
-        domain_server: 200dev@200dev.local
+        #domain_server: 200dev@200dev.local
         
