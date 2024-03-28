@@ -46,7 +46,7 @@
         firstname: Alessandro
         lastname: Patricio
         #domain_username: aopatricio@200dev.local
-        domain_password: B0bP4ssw0rd
+        #domain_password: B0bP4ssw0rd
         domain_username: 200DEV\aopatricio
         domain_server: 200dev@200dev.local
         
