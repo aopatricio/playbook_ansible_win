@@ -32,7 +32,7 @@
         var: system_info.stdout
     - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
       microsoft.ad.user:
-        name: aopatricio
+        name: Alessandro Patricio
         password: B0bP4ssw0rd
         state: present
         path: ou=test,dc=200dev,dc=local
@@ -40,7 +40,6 @@
           set:
           - Domain Admins
           - Domain Users
-        name: Alessandro Patricio
         sam_account_name: aopatricio
         display_name: Alessandro Patricio | 200DEV
         firstname: Alessandro
