@@ -7,6 +7,12 @@
       ansible.windows.win_service_info:
         name: win*
     
+    - name: Set service OpenSSH Agent startup mode to auto and ensure it is started
+      ansible.windows.win_service:
+        name: ssh-agent
+        start_mode: auto
+        state: started
+    
     - name: Obter informações do sistema usando systeminfo
       win_shell: systeminfo
       register: system_info
