@@ -4,9 +4,6 @@
 
   tasks:
     - include_vars: users.yml
-    - name: Find all services that start with 'win'
-      ansible.windows.win_service_info:
-        name: win*
 
     - name: Create Multi User in OU ou=test,dc=200dev,dc=local
       microsoft.ad.user:
