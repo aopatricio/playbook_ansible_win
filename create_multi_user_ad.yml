@@ -7,16 +7,16 @@
 
     - name: Create Multi User in OU ou=test,dc=200dev,dc=local
       microsoft.ad.user:
-        name: name={{ item.name }}
+        name: {{ item.name }}
         password: B0bP4ssw0rd
         state: present
-        path: name={{ item.path }}
+        path: {{ item.path }}
         groups:
           set:
           - Domain Admins
           - Domain Users
-        sam_account_name: name={{ item.sam_account_name }}
-        display_name: name={{ item.display_name }}
-        firstname: name={{ item.firstname }}
-        lastname: name={{ item.lastname }}
+        sam_account_name: {{ item.sam_account_name }}
+        display_name: {{ item.display_name }}
+        firstname: {{ item.firstname }}
+        lastname: {{ item.lastname }}
       with_items: '{{users}}'    
