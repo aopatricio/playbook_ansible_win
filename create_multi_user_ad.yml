@@ -7,7 +7,7 @@
 
     - name: Create Multi User in OU ou=test,dc=200dev,dc=local
       microsoft.ad.user:
-        name: {{ item.name }}
+        name: name={{ item.name }}
         password: {{ item.password }}
         state: present
         path: {{ item.path }}
