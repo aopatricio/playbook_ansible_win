@@ -1,18 +1,12 @@
 ---
 users:
-  - username: maruna
-    use_sudo: no
-
-  - username: jaroslav
-    name: Alessandro Patricio
-    password: B0bP4ssw0rd
-    state: present
-    path: ou=test,dc=200dev,dc=local
-        groups:
-          set:
-          - Domain Admins
-          - Domain Users
-        sam_account_name: aopatricio
-        display_name: Alessandro Patricio | 200DEV
-        firstname: Alessandro
-        lastname: Patricio
+  - name: Alessandro Patricio
+  - password: B0bP4ssw0rd
+  - path: ou=test,dc=200dev,dc=local
+  - groups:
+      - Domain Admins
+      - Domain Users
+  - sam_account_name: aopatricio
+  - display_name: Alessandro Patricio | 200DEV
+  - firstname: Alessandro
+  - lastname: Patricio
