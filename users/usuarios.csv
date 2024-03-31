@@ -1,4 +1,4 @@
-name,sam_account_name,display_name,firstname,lastname
+name,sam_account_name,display_name,firstname,lastname,upn
 Alessandro Patricio,aopatricio,Alessandro Patricio | 200DEV,Alessandro,Patricio,aopatricio@200dev.local
 Gerferson Patricio,gpatricio,Geferson Patricio | 200DEV,Geferson,Patricio,gpatricio@200dev.local
 Carlos Souza,carlos.souza,Carlos Souza | 200DEV,Carlos,Souza,carlos.souza@200dev.local
