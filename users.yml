@@ -1,12 +1,12 @@
 ---
 users:
-  - name: Alessandro Patricio
-    password: B0bP4ssw0rd
-    path: ou=test,dc=200dev,dc=local
-    groups:
+  - var_name: Alessandro Patricio
+    var_password: B0bP4ssw0rd
+    var_path: ou=test,dc=200dev,dc=local
+    var_groups:
       - Domain Admins
       - Domain Users
-    sam_account_name: aopatricio
-    display_name: Alessandro Patricio | 200DEV
-    firstname: Alessandro
-    lastname: Patricio
+    var_sam_account_name: aopatricio
+    var_display_name: Alessandro Patricio | 200DEV
+    var_firstname: Alessandro
+    var_lastname: Patricio
