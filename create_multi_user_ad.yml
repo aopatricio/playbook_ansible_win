@@ -12,6 +12,7 @@
     - name: List users from csv file with users_list variable
       debug:
         msg: "{{ users_list.list }}"
+   
     - name: Print Dictionaries
       debug:
         msg: "{{ item.name }}"
@@ -29,7 +30,6 @@
         upn: "{{ item.upn }}"
         groups:
           set:
-          - Domain Admins
-          - Domain Users
+          - "{{ item.group_member }}"
         state: present
       loop: "{{ users_list.list }}"
