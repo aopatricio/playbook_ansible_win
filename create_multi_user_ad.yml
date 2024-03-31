@@ -21,3 +21,4 @@
       microsoft.ad.user:
         name: {{ item.name }}
         state: present
+      loop: "{{ users_list.list }}"
