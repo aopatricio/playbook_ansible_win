@@ -1,5 +1,5 @@
 - name: Playbook para criar inventário do Windows
-  hosts: hosts
+  hosts: localhost
   gather_facts: no
 
   tasks:
