@@ -19,6 +19,6 @@
 
     - name: Create Multi User in OU ou=test,dc=200dev,dc=local
       microsoft.ad.user:
-        name: {{ item.name }}
+        name: ""{{ item.name }}""
         state: present
       loop: "{{ users_list.list }}"
