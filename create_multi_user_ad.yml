@@ -3,26 +3,23 @@
   gather_facts: no
 
   tasks:
+    - include_vars: users.yml
     - name: Find all services that start with 'win'
       ansible.windows.win_service_info:
         name: win*
 
-    - name: Ensure user bob is present in OU ou=test,dc=200dev,dc=local
+    - name: Create Multi User in OU ou=test,dc=200dev,dc=local
       microsoft.ad.user:
-        name: Alessandro Patricio
-        password: B0bP4ssw0rd
+        name: {{ item.name }}
+        password: {{ item.password }}
         state: present
-        path: ou=test,dc=200dev,dc=local
+        path: {{ item.path }}
         groups:
           set:
           - Domain Admins
           - Domain Users
-        sam_account_name: aopatricio
-        display_name: Alessandro Patricio | 200DEV
-        firstname: Alessandro
-        lastname: Patricio
-        #domain_username: aopatricio@200dev.local
-        #domain_username: 200DEV\aopatricio
-        #domain_password: B0bP4ssw0rd
-        #domain_server: 200dev@200dev.local
-        
+        sam_account_name: {{ item.sam_account_name }}
+        display_name: {{ item.display_name }}
+        firstname: {{ item.firstname }}
+        lastname: {{ item.lastname }}
+      with_items: '{{users}}'    
