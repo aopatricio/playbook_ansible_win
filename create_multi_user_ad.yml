@@ -3,20 +3,16 @@
   gather_facts: no
 
   tasks:
-    - include_vars: users.yml
+    - name: Read CSV File
+      read_csv:
+        path: users/usuarios.csv
+      delegate_to: localhost
+      register: users_list
 
-    - name: Create Multi User in OU ou=test,dc=200dev,dc=local
-      microsoft.ad.user:
-        name: {{ item.var_name }}
-        password: B0bP4ssw0rd
-        state: present
-        path: {{ item.var_path }}
-        groups:
-          set:
-          - Domain Admins
-          - Domain Users
-        sam_account_name: {{ item.var_sam_account_name }}
-        display_name: {{ item.var_display_name }}
-        firstname: {{ item.var_firstname }}
-        lastname: {{ item.var_lastname }}
-      with_items: '{{users}}'    
+    - name: List users from csv file with users_list variable
+      debug:
+        msg: "{{ users_list.list }}"
+    - name: Print Dictionaries
+      debug:
+        msg: "{{ item.name }}"
+      loop: "{{ users_list.list }}"
