@@ -10,13 +10,13 @@
         name: name={{ item.name }}
         password: B0bP4ssw0rd
         state: present
-        path: path={{ item.path }}
+        path: name={{ item.path }}
         groups:
           set:
           - Domain Admins
           - Domain Users
-        sam_account_name: sam_account_name={{ item.sam_account_name }}
-        display_name: display_name={{ item.display_name }}
-        firstname: firstname={{ item.firstname }}
-        lastname: lastname={{ item.lastname }}
+        sam_account_name: name={{ item.sam_account_name }}
+        display_name: name={{ item.display_name }}
+        firstname: name={{ item.firstname }}
+        lastname: name={{ item.lastname }}
       with_items: '{{users}}'    
