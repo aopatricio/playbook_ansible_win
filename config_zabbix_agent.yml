@@ -23,9 +23,9 @@
     - name: Test net
       ignore_errors: yes
       win_wait_for:
-        host: gerarcapital1.com.br
+        host: gerarcapital.com.br
         port: 443
-        timeout: 15
+        timeout: 5
       register: outputnet
 
     - name: Configure Zabbix Agent file
@@ -46,7 +46,7 @@
       community.windows.win_lineinfile:
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Hostname=OI-MS-MAP01'
-        line: 'Hostname=172.20.32.12'
+        line: 'Hostname=SRVTSDEV01'
       when: outputnet.failed != true
 
     - name: Set service Zabbix Agent startup mode to auto and ensure it is started
