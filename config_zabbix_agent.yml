@@ -1,0 +1,14 @@
+- name: Playbook para criar inventário do Windows
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Find all services that start with 'Zabbix'
+      ansible.windows.win_service_info:
+        name: Zabbix Agent
+    
+    - name: Set service Zabbix Agent startup mode to auto and ensure it is started
+      ansible.windows.win_service:
+        name: Zabbix Agent #ssh-agent
+        start_mode: auto
+        state: started
