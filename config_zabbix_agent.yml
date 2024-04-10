@@ -20,6 +20,14 @@
         name: Zabbix Agent 2 #ssh-agent
         state: stopped
 
+    - name: Test net
+      ignore_errors: yes
+      win_wait_for:
+        host: gerarcapital.com.br
+        port: 443
+        timeout: 15
+      register: outputnet
+
     - name: Configure Zabbix Agent file
       community.windows.win_lineinfile:
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
@@ -44,4 +52,5 @@
         state: started
 
     - debug: msg="{{result}}"
+    - debug: msg="{{outputnet}}"
 
