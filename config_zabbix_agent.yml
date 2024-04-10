@@ -14,6 +14,7 @@
       failed_when: result is not defined
       ignore_unreachable: yes
       #ignore_errors: yes
+      - debug: msg="{{result}}"
    
     - name: Create a new service to Zabbix Agent
       win_service:
