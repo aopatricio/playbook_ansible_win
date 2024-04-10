@@ -1,5 +1,5 @@
 - name: Playbook para criar inventário do Windows
-  hosts: 172.20.33.26
+  hosts: all
   gather_facts: no
   
 - name: Get info for all installed services
