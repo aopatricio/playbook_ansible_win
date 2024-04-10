@@ -22,7 +22,7 @@
         path: C:\Zabbix Agent 2\zabbix_agent2.exe -c C:\Zabbix Agent 2\zabbix_agent2.conf -f=false
         display_name: Zabbix Agent Service
         description: Zabbix Serbice Agent
-      when: result.exists false
+      when: result.state is not running
 
     - debug: msg="{{result}}"
       when: result.state is not defined or result.name is not defined
