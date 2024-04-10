@@ -16,10 +16,11 @@
       #ignore_errors: yes
       
     - debug: msg="{{result}}"
+    
     - name: Set service Zabbix Agent startup mode to auto and ensure it is started
       win_service:
         name: Zabbix Agent 2 #ssh-agent
-        state: stop 
+        state: stopped
 
     - name: Configure the Zabbix agent
       replace:
