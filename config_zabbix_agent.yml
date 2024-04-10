@@ -7,12 +7,6 @@
       ansible.windows.win_service_info:
         name: Zabbix Agent
     
-    - name: Set service Zabbix Agent startup mode to auto and ensure it is started
-      ansible.windows.win_service:
-        name: Zabbix Agent #ssh-agent
-        start_mode: auto
-        state: started
-
     - name: check services
       win_service:
           name: Zabbix Agent
@@ -24,3 +18,8 @@
 
     - debug: msg="running"
       when: result.state is not defined or result.name is not defined
+ #  - name: Set service Zabbix Agent startup mode to auto and ensure it is started
+   #    ansible.windows.win_service:
+   #      name: Zabbix Agent #ssh-agent
+  #       start_mode: auto
+  #       state: started
