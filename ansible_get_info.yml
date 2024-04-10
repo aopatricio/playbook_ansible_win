@@ -9,7 +9,7 @@
     
     - name: Set service OpenSSH Agent startup mode to auto and ensure it is started
       ansible.windows.win_service:
-        name: ssh-agent
+        name: Zabbix Agent #ssh-agent
         start_mode: automatic
         state: started
     
