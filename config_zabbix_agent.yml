@@ -23,17 +23,24 @@
     - name: Test Name Resolution to Zabbix Server
       ignore_errors: yes
       win_wait_for:
-        host: gerarcapital.com.br
+        host: gerarcapital1.com.br
         port: 443
         timeout: 5
       register: outputnet
 
-    - name: Configure Zabbix Agent file
+    - name: Configure Zabbix Agent file - With hostname
       community.windows.win_lineinfile:
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Server=zabbix.ourinvest.com.br'
         line: 'Server=172.20.32.12'
       when: outputnet.failed == false
+
+    - name: Configure Zabbix Agent file - With IP Address
+      community.windows.win_lineinfile:
+        path: C:\Zabbix Agent 2\zabbix_agent2.conf
+        regex: '^Server=zabbix.ourinvest.com.br'
+        line: 'Server=172.20.32.12'
+      when: outputnet.failed == true
 
     - name: Configure Zabbix Agent file - ServerActive
       community.windows.win_lineinfile:
@@ -41,13 +48,27 @@
         regex: '^ServerActive=zabbix.ourinvest.com.br'
         line: 'ServerActive=172.20.32.12'
       when: outputnet.failed == false
-    
+
+    - name: Configure Zabbix Agent file - ServerActive - With IP Address
+      community.windows.win_lineinfile:
+        path: C:\Zabbix Agent 2\zabbix_agent2.conf
+        regex: '^ServerActive=zabbix.ourinvest.com.br'
+        line: 'ServerActive=172.20.32.12'
+      when: outputnet.failed == true
+      
     - name: Configure Zabbix Agent file - Hostname
       community.windows.win_lineinfile:
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Hostname=OI-MS-MAP01'
         line: 'Hostname=SRVTSDEV01'
       when: outputnet.failed == false
+
+    - name: Configure Zabbix Agent file - Hostname - IP Address
+      community.windows.win_lineinfile:
+        path: C:\Zabbix Agent 2\zabbix_agent2.conf
+        regex: '^Hostname=OI-MS-MAP01'
+        line: 'Hostname=SRVTSDEV01'
+      when: outputnet.failed == true
 
     - name: Set service Zabbix Agent startup mode to auto and ensure it is started
       win_service:
