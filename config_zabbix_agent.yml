@@ -40,18 +40,6 @@
         regex: '^Hostname=OI-MS-MAP01'
         line: 'Hostname=172.20.32.12'
 
-    #- name: Configure the Zabbix agent
-    #  replace:
-    #    path: C:\Zabbix Agent 2\zabbix_agent2.conf
-    #    regexp: '{{item.regexp}}'
-    #    replace: '{{item.replace}}'
-    #  with_items:
-    #    - {regexp: "^Server=zabbix.ourinvest.com.br$", replace: "Server={{zabbix_server}}"}
-    #    - {regexp: "^ServerActive=zabbix.ourinvest.com.br$", replace: "ServerActive={{zabbix_server}}"}
-    #    - {regexp: "^Hostname=OI-MS-MAP01$", replace: "Hostname={{zabbix_server}}"}
-    #  vars:
-    #    - zabbix_server: 172.20.32.12
-
     - debug: msg="{{result}}"
       when: result.state is not defined or result.name is not defined
       
