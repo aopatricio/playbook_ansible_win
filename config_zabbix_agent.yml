@@ -33,21 +33,21 @@
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Server=zabbix.ourinvest.com.br'
         line: 'Server=172.20.32.12'
-      when: outputnet.failed != true
+      when: outputnet.failed == false
 
     - name: Configure Zabbix Agent file - ServerActive
       community.windows.win_lineinfile:
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^ServerActive=zabbix.ourinvest.com.br'
         line: 'ServerActive=172.20.32.12'
-      when: outputnet.failed != true
+      when: outputnet.failed == false
     
     - name: Configure Zabbix Agent file - Hostname
       community.windows.win_lineinfile:
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Hostname=OI-MS-MAP01'
         line: 'Hostname=SRVTSDEV01'
-      when: outputnet.failed != true
+      when: outputnet.failed == false
 
     - name: Set service Zabbix Agent startup mode to auto and ensure it is started
       win_service:
