@@ -9,7 +9,7 @@
     
     - name: check services
       win_service:
-          name: Zabbix Agent
+          name: ssh-agent #Zabbix Agent
       register: result
       failed_when: result is not defined
       #ignore_errors: yes
