@@ -14,20 +14,22 @@
       failed_when: result is not defined
       ignore_unreachable: yes
       #ignore_errors: yes
+      
     - debug: msg="{{result}}"
    
-    - name: Create a new service to Zabbix Agent
-      win_service:
-        name: Zabbix Agent
-        path: C:\Zabbix Agent 2\zabbix_agent2.exe -c C:\Zabbix Agent 2\zabbix_agent2.conf -f=false
-        display_name: Zabbix Agent Service
-        description: Zabbix Service Agent
-      when: result.exists != true
+    #- name: Create a new service to Zabbix Agent
+    #  win_service:
+    #    name: Zabbix Agent 2
+    #    path: C:\Zabbix Agent 2\zabbix_agent2.exe -c C:\Zabbix Agent 2\zabbix_agent2.conf -f=false
+    #    display_name: Zabbix Agent Service
+    #    description: Zabbix Service Agent
+    #  when: result.exists != true
 
     - debug: msg="{{result}}"
       when: result.state is not defined or result.name is not defined
+      
     - name: Set service Zabbix Agent startup mode to auto and ensure it is started
       win_service:
-        name: Zabbix Agent #ssh-agent
+        name: Zabbix Agent 2 #ssh-agent
         start_mode: auto
         state: started
