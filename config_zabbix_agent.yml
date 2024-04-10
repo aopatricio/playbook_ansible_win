@@ -12,3 +12,15 @@
         name: Zabbix Agent #ssh-agent
         start_mode: auto
         state: started
+
+    - name: check services
+      win_service:
+          name: Zabbix Agent
+      register: result
+      failed_when: result is not defined
+      #ignore_errors: yes
+
+    - debug: msg="{{result}}"
+
+    - debug: msg="running"
+      when: result.state is not defined or result.name is not defined
