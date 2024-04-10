@@ -27,8 +27,12 @@
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Server=zabbix.ourinvest.com.br'
         line: 'Server=172.20.32.12'
+      community.windows.win_lineinfile:
+        path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^ServerActive=zabbix.ourinvest.com.br'
         line: 'Server=172.20.32.12'
+      community.windows.win_lineinfile:
+        path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Hostname=OI-MS-MAP01'
         line: 'Server=172.20.32.12'
 
