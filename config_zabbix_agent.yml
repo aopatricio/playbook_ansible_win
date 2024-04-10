@@ -33,7 +33,7 @@
         path: C:\Zabbix Agent 2\zabbix_agent2.conf
         regex: '^Server=zabbix.ourinvest.com.br'
         line: 'Server=172.20.32.12'
-      when: outputnet.failed != true
+      when: outputnet.failed != false
 
     - name: Configure Zabbix Agent file - ServerActive
       community.windows.win_lineinfile:
