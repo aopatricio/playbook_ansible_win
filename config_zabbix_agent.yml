@@ -15,12 +15,12 @@
       ignore_unreachable: yes
       #ignore_errors: yes
          
-    - name: Set service Zabbix Agent startup mode to auto and ensure it is started
+    - name: Set service Zabbix Agent to stoped
       win_service:
         name: Zabbix Agent 2 #ssh-agent
         state: stopped
 
-    - name: Test net
+    - name: Test Name Resolution to Zabbix Server
       ignore_errors: yes
       win_wait_for:
         host: gerarcapital.com.br
