@@ -16,6 +16,18 @@
       #ignore_errors: yes
       
     - debug: msg="{{result}}"
+    - name: Configure the Zabbix agent
+      replace:
+        path: C:\Zabbix Agent 2\zabbix_agent2.conf
+        regexp: '{{item.regexp}}'
+        replace: '{{item.replace}}'
+      with_items:
+        - {regexp: "^Server=zabbix.ourinvest.com.br$", replace: "Server={{zabbix_server}}"}
+        - {regexp: "^ServerActive=zabbix.ourinvest.com.br$", replace: "ServerActive={{zabbix_server}}"}
+        - {regexp: "^Hostname=OI-MS-MAP01$", replace: "Hostname={{ansible_hostname}}"}
+      vars:
+        - zabbix_server: 172.20.32.12
+
    
     #- name: Create a new service to Zabbix Agent
     #  win_service:
