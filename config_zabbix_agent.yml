@@ -27,7 +27,7 @@
     - debug: msg="{{result}}"
       when: result.state is not defined or result.name is not defined
     - name: Set service Zabbix Agent startup mode to auto and ensure it is started
-        ansible.windows.win_service:
-          name: Zabbix Agent #ssh-agent
-          start_mode: auto
-          state: started
+      win_service:
+        name: Zabbix Agent #ssh-agent
+        start_mode: auto
+        state: started
