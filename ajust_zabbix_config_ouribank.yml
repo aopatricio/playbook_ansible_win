@@ -15,10 +15,10 @@
       ignore_unreachable: yes
       #ignore_errors: yes
          
-    - name: Set service Zabbix Agent to stoped
-      win_service:
-        name: Zabbix Agent 2 #ssh-agent
-        state: stopped
+    # - name: Set service Zabbix Agent to stoped
+    #   win_service:
+    #     name: Zabbix Agent 2 #ssh-agent
+    #     state: stopped
 
     - name: Test Name Resolution to Zabbix Server
       ignore_errors: yes
