@@ -1,0 +1,109 @@
+
+- name: Playbook para criar inventário do Windows
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Find all services that start with 'Zabbix'
+      ansible.windows.win_service_info:
+        name: Zabbix Agent
+    
+    - name: check services
+      win_service:
+          name: Zabbix Agent
+      register: result
+      failed_when: result is not defined
+      ignore_unreachable: yes
+      #ignore_errors: yes
+      
+    - name: Test Name Resolution to Zabbix Server
+      ignore_errors: yes
+      win_wait_for:
+        host: ouribank.com
+        port: 443
+        timeout: 5
+      register: outputnet
+
+    - name: Display Error
+      debug:
+        msg: "Servidor {{ inventory_hostname }} não conectou com o novo DNS"
+      when: outputnet.failed == true
+
+    - name: Find zabbix agent file
+      ansible.windows.win_find:
+        paths: 
+        - C:\zabbix
+        - C:\Zabbix
+        patterns: [ 'zabbix_agentd.conf' ]
+        recurse: yes
+      when: outputnet.failed == false
+      register: findfilename
+
+    - name: Display File name
+      debug:
+        msg: "{{ findfilename.files[0].path }}"
+      when: outputnet.failed == false
+
+    - name: Configure Zabbix Agent file - With hostname
+      community.windows.win_lineinfile:
+        path: "{{ findfilename.files[0].path }}"
+        regex: '^Server=zabbix.ourinvest.com.br'
+        line: 'Server=zabbix.ouribank.com'
+        backrefs: yes
+      when: outputnet.failed == false
+      register: filechangedserver
+
+    - name: Configure Zabbix Agent file - With hostname
+      community.windows.win_lineinfile:
+        path: "{{ findfilename.files[0].path }}"
+        regex: '^ServerActive=zabbix.ourinvest.com.br'
+        line: 'ServerActive=zabbix.ouribank.com'
+        backrefs: yes
+      when: outputnet.failed == false
+      register: filechangedactive
+
+    - name: Configure Zabbix Agent file - With hostname
+      community.windows.win_lineinfile:
+        path: "{{ findfilename.files[0].path }}"
+        regex: '^Server=192.168.5.55'
+        line: 'Server=zabbix.ouribank.com'
+        backrefs: yes
+      when: outputnet.failed == false and filechangedserver.changed == false
+      register: filechangedserver2
+
+    - name: Configure Zabbix Agent file - With hostname
+      community.windows.win_lineinfile:
+        path: "{{ findfilename.files[0].path }}"
+        regex: '^ServerActive=192.168.5.55'
+        line: 'ServerActive=zabbix.ouribank.com'
+        backrefs: yes
+      when: outputnet.failed == false and filechangedactive.changed == false
+      register: filechangedactive2
+
+    - name: Display Result
+      debug:
+        msg: "Servidor {{ inventory_hostname }} alterado com sucesso"
+      when: outputnet.failed == false and filechangedserver.changed == true and filechangedactive.changed == true
+
+    - name: Display Result
+      debug:
+        msg: "Servidor {{ inventory_hostname }} alterado com sucesso"
+      when: outputnet.failed == false and filechangedserver2.changed == true and filechangedactive2.changed == true
+
+    - name: Display Result
+      debug:
+        msg: "Servidor {{ inventory_hostname }} parcialmente alterado"
+      when: (outputnet.failed == false and filechangedserver.changed == true and filechangedactive.changed == false) or (outputnet.failed == false and filechangedactive.changed == true and filechangedserver.changed == false)
+
+    - name: Display Result
+      debug:
+        msg: "Servidor {{ inventory_hostname }} parcialmente alterado"
+      when: (outputnet.failed == false and filechangedserver2.changed == true and filechangedactive2.changed == false) or (outputnet.failed == false and filechangedactive2.changed == true and filechangedserver2.changed == false)
+    # - name: Set service Zabbix Agent startup mode to auto and ensure it is started
+    #   win_service:
+    #     name: Zabbix Agent
+    #     state: restarted
+    #   register: result
+
+    # - debug: msg="{{result}}"
+    # - debug: msg="{{outputnet}}"
