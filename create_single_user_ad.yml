@@ -10,7 +10,7 @@
     - name: Ensure user bob is present in OU ou=test,dc=200dev,dc=local
       microsoft.ad.user:
         name: Alessandro Patricio
-        password: B0bP4ssw0rd
+        password: "{{ password }}"
         state: present
         path: ou=test,dc=200dev,dc=local
         groups:
