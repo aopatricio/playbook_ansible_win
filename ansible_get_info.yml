@@ -3,7 +3,7 @@
   gather_facts: no
   tasks:
     - name: Register as user (joe_user) auto-subscribe to available content.
-      redhat_subscription:
+      community.general.redhat_subscription:
         state: present
         username: alessandro.patricio@200dev.com
         password: Bmgp@2008
