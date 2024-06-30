@@ -7,7 +7,12 @@
    
     - name: Register as user alessandro auto-subscribe to available content.
       command: subscription-manager register --username "{{sub_username}}" --password "{{sub_password}}" --auto-attach
-
+    
+    - name: "Install net-tools packages"
+      dnf: "name={{ item }} state=present"
+      with_items:
+        - net-tools
+        
 - name: Change hostname Event Drive Ansible
   hosts: 172.20.33.53
   gather_facts: no
