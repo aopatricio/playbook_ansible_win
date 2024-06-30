@@ -82,11 +82,11 @@
     #   command: sudo -u postgres psql -c "CREATE ROLE {{db_user}} WITH LOGIN SUPERUSER PASSWORD '{{db_password}}';"
     
     - name: "Example1: Validate if a String or line is present in the file"
-        lineinfile:
-          path: /var/lib/pgsql/15/data/pg_hba.conf
-          regexp: "host    all             all             127.0.0.1/32            scram-sha-256" 
-          line: "host    all             all             0.0.0.0/0            md5"
-          state: present
+      lineinfile:
+        path: /var/lib/pgsql/15/data/pg_hba.conf
+        regexp: "host    all             all             127.0.0.1/32            scram-sha-256" 
+        line: "host    all             all             0.0.0.0/0            md5"
+        state: present
           
     # - name: "Allow md5 connection for the db user"
     #   postgresql_pg_hba:
