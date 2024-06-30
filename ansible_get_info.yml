@@ -2,6 +2,9 @@
   hosts: all
   gather_facts: no
   tasks:
+    - name: Unregister from Subscription Manager, if registered
+      redhat_subscription:
+        state: absent
     - name: Register as user (joe_user) auto-subscribe to available content.
       community.general.redhat_subscription:
         state: present
