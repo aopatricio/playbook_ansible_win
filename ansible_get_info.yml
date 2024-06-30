@@ -23,7 +23,7 @@
       command: hostname vm-ansible-eda
 
 - name: Change hostname Automation Controller
-  hosts: 172.20.33.53
+  hosts: 172.20.33.52
   gather_facts: no
   tasks:
     - name: Change hostname Automation Controller
