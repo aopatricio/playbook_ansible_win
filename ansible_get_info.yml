@@ -29,7 +29,7 @@
     - name: Change hostname Automation Hub
       command: hostname vm-ansible-automationhub
 - name: Change hostname db server
-  hosts: 172.20.33.53
+  hosts: 172.20.33.54
   gather_facts: no
   tasks:
     - name: Change hostname Database Server
