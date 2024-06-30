@@ -67,19 +67,15 @@
     #   with_items:
     #     - postgresql-15
     
-    - name: Change Default Listen ipaddress
-      ansible.builtin.lineinfile:
-        path: /var/lib/pgsql/15/data/postgresql.conf
-        regexp: '^listen_addresses'
-        insertafter: '^#listen_addresses'
-        line: listen_addresses '*' 
-    
-    # - name: "Create awx database"
-    #   postgresql_db:
-    #     state: present
-    #     name: "{{ db_name }}"
-    #   become: yes
-    #   become_user: postgres
+    # - name: Change Default Listen ipaddress
+    #   ansible.builtin.lineinfile:
+    #     path: /var/lib/pgsql/15/data/postgresql.conf
+    #     regexp: '^listen_addresses'
+    #     insertafter: '^#listen_addresses'
+    #     line: listen_addresses '*' 
+
+    - name: "Create awx database"
+      command: sudo -u postgres psql -c 'create database awx;'
 
     # - name: "Create db user"
     #   postgresql_user:
