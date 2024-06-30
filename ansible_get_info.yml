@@ -74,31 +74,20 @@
     #     insertafter: '^#listen_addresses'
     #     line: listen_addresses '*' 
 
-    - name: "Create awx database"
-      command: sudo -u postgres psql -c 'create database {{db_name}};'
+    # - name: "Create awx database"
+    #   command: sudo -u postgres psql -c 'create database {{db_name}};'
     
-    - name: "Create awx user"
-      #command: sudo -u postgres psql -c "ALTER USER awxuser PASSWORD '{{db_password}}';"
-      command: sudo -u postgres psql -c "CREATE ROLE {{db_user}} WITH LOGIN SUPERUSER PASSWORD '{{db_password}}';"
-   
-    # - name: "Create db user"
-    #   postgresql_user:
-    #     state: present
-    #     name: "{{ db_user }}"
-    #     password: "{{ db_password }}"
-    #   become: yes
-    #   become_user: postgres
-
-    # - name: "Grant db user access to awx db"
-    #   postgresql_privs:
-    #     type: database
-    #     database: "{{ db_name }}"
-    #     roles: "{{ db_user }}"
-    #     grant_option: no
-    #     privs: all
-    #   become: yes
-    #   become_user: postgres
-
+    # - name: "Create awx user"
+    #   #command: sudo -u postgres psql -c "ALTER USER awxuser PASSWORD '{{db_password}}';"
+    #   command: sudo -u postgres psql -c "CREATE ROLE {{db_user}} WITH LOGIN SUPERUSER PASSWORD '{{db_password}}';"
+    
+    - name: "Example1: Validate if a String or line is present in the file"
+        lineinfile:
+          path: /var/lib/pgsql/15/data/pg_hba.conf
+          regexp: "host    all             all             127.0.0.1/32            scram-sha-256" 
+          line: "host    all             all             0.0.0.0/0            md5"
+          state: present
+          
     # - name: "Allow md5 connection for the db user"
     #   postgresql_pg_hba:
     #     dest: "~/data/pg_hba.conf"
