@@ -1,52 +1,6 @@
-- name: Playbook para criar inventário do Windows
-  hosts: all
-  gather_facts: no
-
-  tasks:
-    - name: Find all services that start with 'win'
-      ansible.windows.win_service_info:
-        name: win*
-    
-    - name: Set service OpenSSH Agent startup mode to auto and ensure it is started
-      ansible.windows.win_service:
-        name: Zabbix Agent #ssh-agent
-        start_mode: auto
-        state: started
-    
-    #- name: Obter informações do sistema usando systeminfo
-     # win_shell: systeminfo
-     # register: system_info
-     # changed_when: false
-
-    #- name: Get info for a service using its display name
-    #  ansible.windows.win_service_info:
-    #    name: Windows Remote Management (WS-Management)
-        #register: service_info
-    
-   # - name: Exibir saída do comando Windows Service
-   #   debug:
-   #     var: service_info.stdout    
-
-   #- name: Exibir saída do comando systeminfo
-   #   debug:
-   #     var: system_info.stdout
-        
-    #- name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
-    #  microsoft.ad.user:
-    #    name: Alessandro Patricio
-    #    password: B0bP4ssw0rd
-    #    state: present
-    #    path: ou=test,dc=200dev,dc=local
-    #    groups:
-    #      set:
-    #      - Domain Admins
-    #      - Domain Users
-    #    sam_account_name: aopatricio
-    #    display_name: Alessandro Patricio | 200DEV
-    #    firstname: Alessandro
-    #    lastname: Patricio
-        #domain_username: aopatricio@200dev.local
-        #domain_username: 200DEV\aopatricio
-        #domain_password: B0bP4ssw0rd
-        #domain_server: 200dev@200dev.local
-        
+- name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
+  redhat_subscription:
+    state: present
+    username: alessandro.patricio@200dev.com
+    password: Bmgp@2008
+    auto_attach: true
