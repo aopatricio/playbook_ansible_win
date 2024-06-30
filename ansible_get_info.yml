@@ -5,4 +5,4 @@
     - name: subscription-manager clean
       command: subscription-manager clean
     - name: Register as user (joe_user) auto-subscribe to available content.
-      command: subscription-manager register --username alessandro.patricio@200dev.com --password Bmgp@2008 --auto-attach
+      command: subscription-manager register --username "{{sub_username}}" --password "{{sub_password}}" --auto-attach
