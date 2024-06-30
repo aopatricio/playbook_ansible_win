@@ -66,12 +66,14 @@
     #   service: "name={{ item }} state=started enabled=yes"
     #   with_items:
     #     - postgresql-15
-    - name: Ensure the default Apache port is 8080
+    
+    - name: Change Default Listen ipaddress
       ansible.builtin.lineinfile:
         path: /var/lib/pgsql/15/data/postgresql.conf
         regexp: '^listen_addresses'
         insertafter: '^#listen_addresses'
         line: listen_addresses '*' 
+    
     # - name: "Create awx database"
     #   postgresql_db:
     #     state: present
