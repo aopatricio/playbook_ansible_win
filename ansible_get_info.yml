@@ -60,11 +60,6 @@
 
     - name: "Initialize PostgreSQL"
       command: "/usr/pgsql-15/bin/postgresql-15-setup initdb"
-      
-    - name: "Start and enable services"
-      service: "name={{ item }} state=started enabled=yes"
-      with_items:
-        - postgresql-15
     
     - name: Change Default Listen ipaddress
       ansible.builtin.lineinfile:
@@ -72,13 +67,6 @@
         regexp: '^listen_addresses'
         insertafter: '^#listen_addresses'
         line: listen_addresses '*' 
-
-    - name: "Create awx database"
-      command: sudo -u postgres psql -c 'create database {{db_name}};'
-    
-    - name: "Create awx user"
-      #command: sudo -u postgres psql -c "ALTER USER awxuser PASSWORD '{{db_password}}';"
-      command: sudo -u postgres psql -c "CREATE ROLE {{db_user}} WITH LOGIN SUPERUSER PASSWORD '{{db_password}}';"
     
     - name: "Change encrption option to postgres"
       lineinfile:
@@ -87,3 +75,13 @@
         line: "host    all             all             0.0.0.0/0            md5"
         state: present
           
+    - name: "Start and enable services"
+      service: "name={{ item }} state=started enabled=yes"
+      with_items:
+        - postgresql-15
+
+    - name: "Create awx database"
+      command: sudo -u postgres psql -c 'create database {{db_name}};'
+    
+    - name: "Create awx user"
+      command: sudo -u postgres psql -c "CREATE ROLE {{db_user}} WITH LOGIN SUPERUSER PASSWORD '{{db_password}}';"
