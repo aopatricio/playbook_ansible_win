@@ -7,3 +7,31 @@
    
     - name: Register as user alessandro auto-subscribe to available content.
       command: subscription-manager register --username "{{sub_username}}" --password "{{sub_password}}" --auto-attach
+
+- name: Change hostname db server
+  hosts: 172.20.33.54
+  gather_facts: no
+  tasks:
+    - name: Change hostname Database Server
+      command: hostname vm-ansible-db
+
+- name: Change hostname Event Drive Ansible
+  hosts: 172.20.33.53
+  gather_facts: no
+  tasks:
+    - name: Change hostname Event Drive Ansible
+      command: hostname vm-ansible-eda
+
+- name: Change hostname Automation Controller
+  hosts: 172.20.33.53
+  gather_facts: no
+  tasks:
+    - name: Change hostname Automation Controller
+      command: hostname vm-ansible-automationcontroller
+
+- name: Change hostname Automation Hub
+  hosts: 172.20.33.51
+  gather_facts: no
+  tasks:
+    - name: Change hostname Automation Hub
+      command: hostname vm-ansible-automationhub
