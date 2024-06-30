@@ -75,9 +75,9 @@
     #     line: listen_addresses '*' 
 
     - name: "Create awx database"
-      command: sudo -u postgres psql -c 'create database "{{db_name}}";'
+      command: sudo -u postgres psql -c 'create database {{db_name}};'
      - name: "Create awx user"
-      command: sudo -u postgres psql -c 'CREATE ROLE "{{db_user}}" WITH LOGIN SUPERUSER PASSWORD "{{db_password}}";'
+      command: sudo -u postgres psql -c 'CREATE ROLE {{db_user}} WITH LOGIN SUPERUSER PASSWORD {{db_password}};'
    
     # - name: "Create db user"
     #   postgresql_user:
