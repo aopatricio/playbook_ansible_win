@@ -34,17 +34,15 @@
   tasks:
     - name: Change hostname Database Server
       command: hostname vm-ansible-db
-  tasks:
+
     - name: Remove all Postgres Package
       command: dnf -y remove postgres\*
-  tasks:
+
     - name: Install Repo
       command: dnf -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-  tasks:
+
     - name: Disable Module
       command: dnf -qy module disable postgresql
-  pre_tasks:
+
     - name: "Install packages"
-      dnf: "name={{ item }} state=present"
-      with_items:
-        - postgresql15-server
+      command: dnf -y install postgresql15-server
