@@ -2,11 +2,8 @@
   hosts: all
   gather_facts: no
   tasks:
-    - name: subscription-manager clean
+    - name: subscription-manager clean and unregister
       command: subscription-manager clean
-   
-    - name: subscription-manager unregister
-      command: subscription-manager unregister
    
     - name: Register as user alessandro auto-subscribe to available content.
       command: subscription-manager register --username "{{sub_username}}" --password "{{sub_password}}" --auto-attach
