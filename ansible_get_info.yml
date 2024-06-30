@@ -66,11 +66,9 @@
     #   service: "name={{ item }} state=started enabled=yes"
     #   with_items:
     #     - postgresql-15
-   
-    - name: Connect to acme database, create django user, and grant access to database and products table
-      postgresql_user:
-        name: awx
-        password: ceec4eif7ya
+    - name: "Install packages"
+      command: echo "listen_addresses = '*'" >> /var/lib/pgsql/15/data/postgresql.conf   
+
     # - name: "Create awx database"
     #   postgresql_db:
     #     state: present
