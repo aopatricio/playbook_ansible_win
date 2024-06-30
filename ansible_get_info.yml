@@ -1,6 +1,10 @@
-- name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
-  redhat_subscription:
-    state: present
-    username: alessandro.patricio@200dev.com
-    password: Bmgp@2008
-    auto_attach: true
+- name: Registro Maquina Linux
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
+      redhat_subscription:
+        state: present
+        username: alessandro.patricio@200dev.com
+        password: Bmgp@2008
+        auto_attach: true
