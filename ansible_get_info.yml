@@ -8,24 +8,6 @@
     - name: Register as user alessandro auto-subscribe to available content.
       command: subscription-manager register --username "{{sub_username}}" --password "{{sub_password}}" --auto-attach
 
-- name: Change hostname db server
-  hosts: 172.20.33.54
-  gather_facts: no
-  tasks:
-    - name: Change hostname Database Server
-      command: hostname vm-ansible-db
-    - name: Remove all Postgres Package
-      command: dnf -y remove postgres\*
-    - name: Install Repo
-      command: dnf -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-    - name: Disable Module
-      command: dnf -qy module disable postgresql
-  pre_tasks:
-    - name: "Install packages"
-      dnf: "name={{ item }} state=present"
-      with_items:
-        - postgresql15-server
-
 - name: Change hostname Event Drive Ansible
   hosts: 172.20.33.53
   gather_facts: no
@@ -46,3 +28,20 @@
   tasks:
     - name: Change hostname Automation Hub
       command: hostname vm-ansible-automationhub
+- name: Change hostname db server
+  hosts: 172.20.33.54
+  gather_facts: no
+  tasks:
+    - name: Change hostname Database Server
+      command: hostname vm-ansible-db
+    - name: Remove all Postgres Package
+      command: dnf -y remove postgres\*
+    - name: Install Repo
+      command: dnf -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+    - name: Disable Module
+      command: dnf -qy module disable postgresql
+  pre_tasks:
+    - name: "Install packages"
+      dnf: "name={{ item }} state=present"
+      with_items:
+        - postgresql15-server
