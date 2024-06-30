@@ -66,9 +66,12 @@
     #   service: "name={{ item }} state=started enabled=yes"
     #   with_items:
     #     - postgresql-15
-    - name: "Change Listen Port Postgres"
-      command: echo "listen_addresses = '*'" >> /var/lib/pgsql/15/data/postgresql.conf   
-
+    - name: replacing a line in file
+      lineinfile: 
+        path: /var/lib/pgsql/15/data/postgresql.conf
+        regexp: '^(.*)#listen_addresses = 'localhost'(.*)$' 
+        line: '#listen_addresses = '*''
+        backrefs: yes
     # - name: "Create awx database"
     #   postgresql_db:
     #     state: present
