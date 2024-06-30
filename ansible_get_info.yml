@@ -73,23 +73,23 @@
     #   become: yes
     #   become_user: postgres
 
-    - name: "Create db user"
-      postgresql_user:
-        state: present
-        name: "{{ db_user }}"
-        password: "{{ db_password }}"
-      become: yes
-      become_user: postgres
+    # - name: "Create db user"
+    #   postgresql_user:
+    #     state: present
+    #     name: "{{ db_user }}"
+    #     password: "{{ db_password }}"
+    #   become: yes
+    #   become_user: postgres
 
-    - name: "Grant db user access to awx db"
-      postgresql_privs:
-        type: database
-        database: "{{ db_name }}"
-        roles: "{{ db_user }}"
-        grant_option: no
-        privs: all
-      become: yes
-      become_user: postgres
+    # - name: "Grant db user access to awx db"
+    #   postgresql_privs:
+    #     type: database
+    #     database: "{{ db_name }}"
+    #     roles: "{{ db_user }}"
+    #     grant_option: no
+    #     privs: all
+    #   become: yes
+    #   become_user: postgres
 
     - name: "Allow md5 connection for the db user"
       postgresql_pg_hba:
